@@ -357,9 +357,13 @@ class Game:
         
     def victory(self): #who wins the game
         global winner
-        if self.fireboy.victory() == True and self.watergirl.victory() == True:
+        all_red_collected = len(red_diamond) == 0
+        all_blue_collected = len(blue_diamond) == 0
+        all_mystery_collected = len(mystery_box) == 0
+        if (self.fireboy.victory() and self.watergirl.victory() and all_red_collected and all_blue_collected and all_mystery_collected):
             self.gameover = True
             image(self.game_over, 0, 0,RESOLUTION1,RESOLUTION2)
+            winner = "Both win together as a team!"
         if self.fireboy.death() == True:
             self.gameover = True
             image(self.game_over, 0, 0,RESOLUTION1,RESOLUTION2)
